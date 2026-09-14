@@ -50,6 +50,12 @@ div.oauth_login_header::after {
   margin-left: 0.8em;
 }
 
+/* Redmine spaces the login form 5em down the page. With a header above it that gap would sit
+   between the two, so drop it and let the header's own margin do the spacing. */
+div.oauth_login_header + div#login-form {
+  margin-top: 0;
+}
+
 div#oauth-form {
   margin: auto;
   width: fit-content;
