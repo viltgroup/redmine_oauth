@@ -59,6 +59,13 @@ div#oauth-form-buttons {
   text-align: center;
 }
 
+img.oauth_button_image {
+  height: 1.4em;
+  width: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
 input#oauth_provider_button_color {
   padding: 0;
 }

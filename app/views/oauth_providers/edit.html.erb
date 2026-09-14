@@ -19,7 +19,7 @@
 
 <%= title [l('label_oauth_providers'), oauth_providers_path], @oauth_provider.custom_name %>
 
-<%= labelled_form_for @oauth_provider do |f| %>
+<%= labelled_form_for @oauth_provider, html: { multipart: true } do |f| %>
   <%= render partial: 'form', locals: { f: f } %>
   <%= submit_tag l(:button_save) %>
 <% end %>

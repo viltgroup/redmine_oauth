@@ -31,6 +31,17 @@ function oauth_set_icon()
     icon.addClass(icon_class);
 }
 
+// Markup the preview button leads with: an uploaded image if there is one, the chosen icon otherwise
+function oauth_button_glyph()
+{
+    let image = $("img#button_image");
+    if(image.length) {
+        return image.prop("outerHTML");
+    }
+    let icon = $("select#oauth_provider_button_icon option:selected");
+    return "<i id=\"button_icon\" class=\"" + icon.text() + "\"></i>";
+}
+
 function oauth_set_button_text()
 {
     let alternative_text = $("input#oauth_provider_button_text");
@@ -39,19 +50,39 @@ function oauth_set_button_text()
         return;
     }
     let oauth_name = $("input#oauth_provider_custom_name").val().trim() ? $("input#oauth_provider_custom_name").val().trim() : $("#oauth_provider_oauth_name option:selected").val();
-    let button = $("button#login-oauth-button");
-    let html = button.html();
-    html = html.replace(/<\/i>\s.*$/, "</i>\n<b>" + oauth_name + "</b>");
-    button.html(html);
+    $("button#login-oauth-button").html(oauth_button_glyph() + "\n<b>" + oauth_name + "</b>");
 }
 
 function oauth_set_alternative_button_text(val) {
     if(!val.trim()) {
         val = $("input#oauth_provider_custom_name").val().trim() ? $("input#oauth_provider_custom_name").val().trim() : $("#oauth_provider_oauth_name option:selected").val();
     }
-    let button = $("button#login-oauth-button");
-    let icon = $("select#oauth_provider_button_icon option:selected");
-    button.html("<i id=\"button_icon\" class=\"" + icon.text() + "\"></i>\n" + val);
+    $("button#login-oauth-button").html(oauth_button_glyph() + "\n" + val);
+}
+
+// Show the picked file straight away, the stored copy only exists after a save
+function oauth_preview_button_image(input)
+{
+    if(!input.files || !input.files[0]) {
+        return;
+    }
+    let reader = new FileReader();
+    reader.onload = function(event) {
+        let button = $("button#login-oauth-button");
+        let image = $("img#button_image");
+        if(!image.length) {
+            let markup = "<img id=\"button_image\" class=\"oauth_button_image\" alt=\"\">";
+            let icon = button.find("i#button_icon");
+            if(icon.length) {
+                icon.replaceWith(markup);
+            } else {
+                button.prepend(markup);
+            }
+            image = $("img#button_image");
+        }
+        image.attr("src", event.target.result);
+    };
+    reader.readAsDataURL(input.files[0]);
 }
 
 function oauth_settings_visibility() {

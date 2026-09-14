@@ -113,5 +113,9 @@ ko:
   field_custom_uid_field: UID 필드
   field_custom_email_field: 이메일 필드
   oauth_button_text_info: Alternative text for the button (HTML formatting)
+  field_button_image: Button image
+  oauth_button_image_info: |
+    Upload an image to use on the login button in place of the icon above. PNG, JPEG, GIF, SVG or WebP, up to 256 kB.
+  error_oauth_button_image_too_big: "is larger than %{max} kB"
   oauth_button_color_info: Button's colour
   oauth_button_icon_info: Button's icon

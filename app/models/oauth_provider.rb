@@ -19,6 +19,14 @@
 
 # OauthProvider model class
 class OauthProvider < ApplicationRecord
+  BUTTON_IMAGE_MAX_SIZE = 256.kilobytes
+  BUTTON_IMAGE_TYPES = %w[image/png image/jpeg image/gif image/svg+xml image/webp].freeze
+
+  # Holds the uploaded file until before_validation turns it into a data URI
+  attr_accessor :button_image_upload
+
+  before_validation :store_button_image
+
   validates :oauth_name, presence: true
   validates :site, format: { without: /\.ru\b/ }, length: { maximum: 256 }
   validates :client_id, presence: true, length: { maximum: 256 }
@@ -57,6 +65,8 @@ class OauthProvider < ApplicationRecord
     self.custom_email_field = params['custom_email_field']
     self.button_color = params['button_color']
     self.button_icon = params['button_icon']
+    self.button_image = nil if params['button_image_delete'] == '1'
+    self.button_image_upload = params['button_image_upload']
     self.custom_firstname_field = params['custom_firstname_field']
     self.custom_lastname_field = params['custom_lastname_field']
     self.custom_logout_endpoint = params['custom_logout_endpoint']
@@ -69,5 +79,28 @@ class OauthProvider < ApplicationRecord
     self.button_text = params['button_text']
     # Reset IMAP by other providers
     OauthProvider.where.not(id: id).where(imap: true).update(imap: false) if imap
+  end
+
+  private
+
+  # The image is kept inline as a data URI. That spares a storage path and a route to serve it from,
+  # and the login page needs the bytes on every render anyway.
+  def store_button_image
+    upload = button_image_upload
+    return if upload.blank?
+
+    unless BUTTON_IMAGE_TYPES.include?(upload.content_type)
+      errors.add :button_image, :invalid
+      return
+    end
+
+    upload.rewind
+    content = upload.read
+    if content.bytesize > BUTTON_IMAGE_MAX_SIZE
+      errors.add :button_image, I18n.t(:error_oauth_button_image_too_big, max: BUTTON_IMAGE_MAX_SIZE / 1024)
+      return
+    end
+
+    self.button_image = "data:#{upload.content_type};base64,#{Base64.strict_encode64(content)}"
   end
 end

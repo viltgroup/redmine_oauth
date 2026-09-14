@@ -56,7 +56,11 @@
           <% style = "background: #{@oauth_provider.button_color};" %>
           <%= button_tag(name: 'login-oauth', id: 'login-oauth-button', title: l(:oauth_login_with), style: style,
                          disabled: true) do %>
-            <i id="button_icon" class="<%= @oauth_provider.button_icon %>"></i>
+            <% if @oauth_provider.button_image.present? %>
+              <img id="button_image" class="oauth_button_image" src="<%= @oauth_provider.button_image %>" alt="">
+            <% else %>
+              <i id="button_icon" class="<%= @oauth_provider.button_icon %>"></i>
+            <% end %>
             <% if @oauth_provider.button_text.present? %>
               <%= raw(@oauth_provider.button_text) %>
             <% else %>
@@ -69,6 +73,20 @@
                          placeholder: @oauth_provider.oauth_name, size: 40, label: '',
                          oninput: 'oauth_set_alternative_button_text(this.value)' %>
         <em class="info"><%= l(:oauth_button_info) %></em>
+      </p>
+      <p>
+        <label for="oauth_provider_button_image_upload"><%= l(:field_button_image) %></label>
+        <%= file_field_tag 'oauth_provider[button_image_upload]', id: 'oauth_provider_button_image_upload',
+                           accept: OauthProvider::BUTTON_IMAGE_TYPES.join(','),
+                           onchange: 'oauth_preview_button_image(this);' %>
+        <% if @oauth_provider.button_image.present? %>
+          <label class="inline" for="oauth_provider_button_image_delete">
+            <%= check_box_tag 'oauth_provider[button_image_delete]', '1', false,
+                              id: 'oauth_provider_button_image_delete' %>
+            <%= l(:button_delete) %>
+          </label>
+        <% end %>
+        <em class="info"><%= l(:oauth_button_image_info) %></em>
       </p>
       <% if %w(Custom).include?(@oauth_provider.oauth_name) %>
         <p id="oauth_options_site" style="display: none">

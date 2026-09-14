@@ -112,5 +112,10 @@ cs:
   field_custom_uid_field: Pole UID
   field_custom_email_field: Pole e-mail
   oauth_button_text_info: Alternativní text pro přihlašovací tlačítko (HTML formátování)
+  field_button_image: Obrázek tlačítka
+  oauth_button_image_info: |
+    Nahrajte obrázek, který se na přihlašovacím tlačítku použije místo ikony výše. PNG, JPEG, GIF, SVG nebo WebP,
+    nejvýše 256 kB.
+  error_oauth_button_image_too_big: "je větší než %{max} kB"
   oauth_button_color_info: Barva tlačítka
   oauth_button_icon_info: Ikonka tlačítka

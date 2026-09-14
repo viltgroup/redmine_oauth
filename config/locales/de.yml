@@ -114,5 +114,10 @@ de:
   field_custom_uid_field: UID-Feld
   field_custom_email_field: E-Mail-Feld
   oauth_button_text_info: Alternativer Text für den Anmeldebutton (HTML-Formatierung)
+  field_button_image: Schaltflächenbild
+  oauth_button_image_info: |
+    Laden Sie ein Bild hoch, das auf der Login-Schaltfläche anstelle des obigen Symbols erscheint. PNG, JPEG, GIF,
+    SVG oder WebP, bis zu 256 kB.
+  error_oauth_button_image_too_big: "ist größer als %{max} kB"
   oauth_button_color_info: Buttons Farbe
   oauth_button_icon_info: Button-Symbol

@@ -113,5 +113,10 @@ fr:
   field_custom_uid_field: Champ UID
   field_custom_email_field: Champ email
   oauth_button_text_info: Texte alternatif pour le bouton (format HTML)
+  field_button_image: Image du bouton
+  oauth_button_image_info: |
+    Téléversez une image à utiliser sur le bouton de connexion à la place de l'icône ci-dessus. PNG, JPEG, GIF, SVG
+    ou WebP, jusqu'à 256 ko.
+  error_oauth_button_image_too_big: "dépasse %{max} ko"
   oauth_button_color_info: Couleur du bouton
   oauth_button_icon_info: Icône du bouton
