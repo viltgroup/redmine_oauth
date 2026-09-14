@@ -27,6 +27,12 @@ module RedmineOauth
       def login
         return super if request.get? && params.include?(:nosso)
 
+        # An SSO forced account is sent to the provider whatever password was typed into the form
+        if request.post? && RedmineOauth.sso_forced_login?(params[:username])
+          forced_provider = OauthProvider.sorted.first&.id
+          return redirect_to oauth_path(back_url: params[:back_url], oauth_provider: forced_provider) if forced_provider
+        end
+
         # If cookie is blank and we are in "OAuth Only" mode,
         # force the first provider instead of falling through to the standard login box
         if cookies[:oauth_autologin].blank? && RedmineOauth.oauth_only_login?

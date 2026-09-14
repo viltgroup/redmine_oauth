@@ -41,6 +41,15 @@ cs:
   oauth_self_registration_domains_info: |
     Uživatélé s e-mailovou adresou z povolených domén jsou automaticky aktivováni.
     Ostatní registrovaní uživatelé čekají na schválení administrátorem. Např.: example.com, partner.org
+  oauth_sso_forced_domains: Domény vynucující SSO (oddělené čárkami)
+  oauth_sso_forced_domains_info: |
+    Účty s emailovou adresou na některé z těchto domén (nebo subdomén) se mohou přihlásit pouze přes OAuth
+    poskytovatele. Odeslání přihlašovacího formuláře je přesměruje k poskytovateli bez ohledu na zadané heslo
+    a jejich heslo je odmítnuto i všude jinde, včetně REST API. Prázdné pole funkci vypne. Příklad: example.com
+  oauth_sso_forced_exempt_logins: Vyjmutá přihlašovací jména (oddělená čárkami)
+  oauth_sso_forced_exempt_logins_info: |
+    Přihlašovací jména, kterým zůstane přihlášení heslem i přes vynucenou doménu. Ponechte zde alespoň jednoho
+    administrátora, abyste se dostali dovnitř i v době nedostupnosti OAuth poskytovatele.
   oauth_hide_login_form: Skrýt přihlašovací formulář
   oauth_update_login_info: Aktualizovat profil uživatele po úspěšném přihlášení.
   oauth_logout: Odhlášení OAuth

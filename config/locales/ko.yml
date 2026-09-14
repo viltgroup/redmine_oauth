@@ -42,6 +42,15 @@ ko:
     Users whose email address is at one of these domains (or a subdomain) are activated automatically.
     All other new users are created pending administrator approval. Example: example.com, partner.org
   oauth_custom_email_field_info: "이메일 필드(기본값: email)."
+  oauth_sso_forced_domains: SSO forced domains (comma-separated)
+  oauth_sso_forced_domains_info: |
+    Accounts whose email address is at one of these domains (or a subdomain) can only authenticate through the
+    OAuth provider. Submitting the login form sends them to the provider, whatever password they typed, and their
+    password is refused everywhere else too, the REST API included. Leave empty to disable. Example: example.com
+  oauth_sso_forced_exempt_logins: Exempt logins (comma-separated)
+  oauth_sso_forced_exempt_logins_info: |
+    Logins that keep password authentication even though their domain is forced. Keep at least one administrator
+    here to stay able to log in while the OAuth provider is unreachable.
   oauth_hide_login_form: 로그인 폼 숨기기(접기)
   oauth_update_login_info: 로그인이 성공한 후에는 사용자의 프로필을 갱신하세요.
   oauth_logout: OAuth 로그아웃

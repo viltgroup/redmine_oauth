@@ -32,20 +32,46 @@ module RedmineOauth
 
     # Comma-separated domains for self_registration mode 4 (auto-activate if email domain matches).
     def self_registration_domains_list
-      raw = Setting.plugin_redmine_oauth['self_registration_domains'].to_s
-      raw.split(',').map { |s| s.strip.downcase.delete_prefix('@') }.compact_blank
+      domains_list('self_registration_domains')
     end
 
-    # True when email's domain exactly matches or is a subdomain of a listed domain.
     def self_registration_domain_auto_activate?(email)
       return false if self_registration != 4
 
-      email_domain = email.to_s.downcase.split('@', 2).last
-      return false if email_domain.blank?
+      domain_listed?(email, self_registration_domains_list)
+    end
 
-      self_registration_domains_list.any? do |d|
-        email_domain == d || email_domain.end_with?(".#{d}")
-      end
+    # Comma-separated domains whose accounts may only authenticate through an OAuth provider.
+    def sso_forced_domains_list
+      domains_list('sso_forced_domains')
+    end
+
+    # Logins kept out of the forced SSO, so there is still a way in while the provider is unreachable.
+    def sso_forced_exempt_logins_list
+      Setting.plugin_redmine_oauth['sso_forced_exempt_logins'].to_s.split(',')
+             .map { |s| s.strip.downcase }.compact_blank
+    end
+
+    def sso_forced_email?(email)
+      domain_listed?(email, sso_forced_domains_list)
+    end
+
+    def sso_forced_user?(user)
+      return false if user.nil? || sso_forced_exempt_logins_list.include?(user.login.to_s.downcase)
+
+      sso_forced_email?(user.mail)
+    end
+
+    # Decides on a login name typed into the login form. An unknown account is still decidable when
+    # an email address was typed, which is what the on-the-fly LDAP registration gets asked with.
+    def sso_forced_login?(login)
+      login = login.to_s.strip
+      return false if login.blank? || sso_forced_exempt_logins_list.include?(login.downcase)
+
+      user = User.find_by_login(login)
+      return sso_forced_email?(user.mail) if user
+
+      login.include?('@') && sso_forced_email?(login)
     end
 
     def update_login?
@@ -81,6 +107,23 @@ module RedmineOauth
     def oauth_only_login?
       value = Setting.plugin_redmine_oauth['oauth_only_login']
       value.to_i.positive? || value == 'true'
+    end
+
+    private
+
+    def domains_list(setting)
+      Setting.plugin_redmine_oauth[setting].to_s.split(',')
+             .map { |s| s.strip.downcase.delete_prefix('@') }.compact_blank
+    end
+
+    # True when email's domain exactly matches or is a subdomain of a listed domain.
+    def domain_listed?(email, domains)
+      return false if domains.empty?
+
+      email_domain = email.to_s.downcase.split('@', 2).last
+      return false if email_domain.blank?
+
+      domains.any? { |d| email_domain == d || email_domain.end_with?(".#{d}") }
     end
   end
 end

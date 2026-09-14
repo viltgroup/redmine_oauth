@@ -88,6 +88,20 @@
   </em>
 </p>
 <p>
+  <label><%= l(:oauth_sso_forced_domains) %></label>
+  <%= text_area_tag 'settings[sso_forced_domains]',
+                    Setting.plugin_redmine_oauth['sso_forced_domains'],
+                    rows: 3, cols: 60 %>
+  <em class="info"><%= l(:oauth_sso_forced_domains_info) %></em>
+</p>
+<p>
+  <label><%= l(:oauth_sso_forced_exempt_logins) %></label>
+  <%= text_area_tag 'settings[sso_forced_exempt_logins]',
+                    Setting.plugin_redmine_oauth['sso_forced_exempt_logins'],
+                    rows: 2, cols: 60 %>
+  <em class="info"><%= l(:oauth_sso_forced_exempt_logins_info) %></em>
+</p>
+<p>
   <label><%= l(:oauth_only_login) %></label>
   <%= check_box_tag 'settings[oauth_only_login]', '1', RedmineOauth.oauth_only_login? %>
   <em class="info">

@@ -34,6 +34,8 @@ Redmine::Plugin.register :redmine_oauth do
     hide_login_form: '0',
     self_registration: '0',
     self_registration_domains: '',
+    sso_forced_domains: '',
+    sso_forced_exempt_logins: '',
     update_login: '0',
     oauth_logout: '0',
     oauth_login: '0',

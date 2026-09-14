@@ -41,6 +41,16 @@ fr:
   oauth_self_registration_domains_info: |
     Les utilisateur·trices dont l'email provient de l'un de ces (sous-)domaines sont activés automatiquement.
     Tous les autres nouveaux·elles utilisateur·trices sont créés en attente d'approbation par un·e administrateur·trice. Exemple: exemple.com, partenaire.org
+  oauth_sso_forced_domains: Domaines à SSO obligatoire (séparés par des virgules)
+  oauth_sso_forced_domains_info: |
+    Les comptes dont l'adresse e-mail relève de ces domaines (ou d'un sous-domaine) ne peuvent s'authentifier que
+    via le fournisseur OAuth. La soumission du formulaire de connexion les redirige vers le fournisseur quel que
+    soit le mot de passe saisi, et leur mot de passe est refusé partout ailleurs, y compris sur l'API REST.
+    Laisser vide pour désactiver. Exemple : example.com
+  oauth_sso_forced_exempt_logins: Identifiants exemptés (séparés par des virgules)
+  oauth_sso_forced_exempt_logins_info: |
+    Identifiants qui conservent l'authentification par mot de passe malgré un domaine obligatoire. Conservez-y au
+    moins un administrateur afin de pouvoir vous connecter lorsque le fournisseur OAuth est injoignable.
   oauth_hide_login_form: Masquer le formulaire de connexion
   oauth_update_login_info: Mettre à jour le profil de l'utilisateur·trice après une connexion réussie.
   oauth_logout: Déconnexion OAuth
