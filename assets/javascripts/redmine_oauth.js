@@ -170,6 +170,23 @@ function oauth_self_registration_changed() {
     }
 }
 
+function oauth_login_headers_changed() {
+    let toggle = $("input[name='settings[login_headers]']");
+    if (!toggle.length) {
+        return;
+    }
+    let headersBlock = $("div#oauth_login_headers_setting");
+    if (!headersBlock.length) {
+        return;
+    }
+    if (toggle.is(":checked")) {
+        headersBlock.show();
+    } else {
+        headersBlock.hide();
+    }
+}
+
 $(function () {
     oauth_self_registration_changed();
+    oauth_login_headers_changed();
 });

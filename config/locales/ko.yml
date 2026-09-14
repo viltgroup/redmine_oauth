@@ -51,6 +51,13 @@ ko:
   oauth_sso_forced_exempt_logins_info: |
     Logins that keep password authentication even though their domain is forced. Keep at least one administrator
     here to stay able to log in while the OAuth provider is unreachable.
+  oauth_login_headers: Enable login page headers
+  oauth_login_headers_info: |
+    Show a captioned separator above each half of the login page, to tell the two ways in apart.
+  oauth_login_header_form: Header above the login form
+  oauth_login_header_form_info: "Left empty, no separator is drawn there. Example: External users"
+  oauth_login_header_oauth: Header above the OAuth buttons
+  oauth_login_header_oauth_info: "Left empty, no separator is drawn there. Example: Internal users"
   oauth_hide_login_form: 로그인 폼 숨기기(접기)
   oauth_update_login_info: 로그인이 성공한 후에는 사용자의 프로필을 갱신하세요.
   oauth_logout: OAuth 로그아웃

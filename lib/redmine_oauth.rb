@@ -26,6 +26,21 @@ module RedmineOauth
       value.to_i.positive? || value == 'true'
     end
 
+    def login_headers?
+      value = Setting.plugin_redmine_oauth['login_headers']
+      value.to_i.positive? || value == 'true'
+    end
+
+    # Separator shown above the standard login form, blank when headers are off.
+    def login_header_form
+      login_headers? ? Setting.plugin_redmine_oauth['login_header_form'].to_s.strip : ''
+    end
+
+    # Separator shown above the OAuth buttons, blank when headers are off.
+    def login_header_oauth
+      login_headers? ? Setting.plugin_redmine_oauth['login_header_oauth'].to_s.strip : ''
+    end
+
     def self_registration
       Setting.plugin_redmine_oauth['self_registration'].to_i
     end

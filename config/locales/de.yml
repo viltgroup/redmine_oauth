@@ -51,6 +51,13 @@ de:
   oauth_sso_forced_exempt_logins_info: |
     Benutzernamen, die trotz erzwungener Domäne weiterhin ein Passwort verwenden dürfen. Hinterlegen Sie hier
     mindestens einen Administrator, um sich bei nicht erreichbarem OAuth-Anbieter noch anmelden zu können.
+  oauth_login_headers: Überschriften auf der Login-Seite aktivieren
+  oauth_login_headers_info: |
+    Zeigt über jeder Hälfte der Login-Seite einen beschrifteten Trenner, um die beiden Wege zu unterscheiden.
+  oauth_login_header_form: Überschrift über dem Login-Formular
+  oauth_login_header_form_info: "Leer wird kein Trenner gezeichnet. Beispiel: Externe Benutzer"
+  oauth_login_header_oauth: Überschrift über den OAuth-Schaltflächen
+  oauth_login_header_oauth_info: "Leer wird kein Trenner gezeichnet. Beispiel: Interne Benutzer"
   oauth_hide_login_form: Login-Formular ausblenden
   oauth_update_login_info: Aktualizieren das Benutzerprofil nach einer erfolgreichen Anmeldung.
   oauth_logout: OAuth-Abmeldung

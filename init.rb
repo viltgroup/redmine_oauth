@@ -32,6 +32,9 @@ Redmine::Plugin.register :redmine_oauth do
 
   settings default: {
     hide_login_form: '0',
+    login_headers: '0',
+    login_header_form: '',
+    login_header_oauth: '',
     self_registration: '0',
     self_registration_domains: '',
     sso_forced_domains: '',

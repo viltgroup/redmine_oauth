@@ -20,11 +20,20 @@
 %>
 
 <%= stylesheet_link_tag 'redmine_oauth', plugin: 'redmine_oauth' %>
+<% form_header = RedmineOauth.login_header_form %>
+<% oauth_header = RedmineOauth.login_header_oauth %>
+<% if form_header.present? %>
+  <%# Moved above the standard login form by the script at the bottom of this partial %>
+  <div id="oauth-login-form-header" class="oauth_login_header"><%= form_header %></div>
+<% end %>
 <% if RedmineOauth.hide_login_form? %>
   <%= javascript_include_tag('redmine_oauth.js', plugin: :redmine_oauth) %>
   <fieldset id= "oauth-fieldset-login-form" class="oauth_collapsible oauth_collapsed">
     <legend class="oauth_legend" onclick="oauth_toggle_fieldset(this)"><%= l(:button_login) %></legend>
   </fieldset>
+<% end %>
+<% if oauth_header.present? %>
+  <div id="oauth-providers-header" class="oauth_login_header"><%= oauth_header %></div>
 <% end %>
 <div id="oauth-form">
   <%= form_tag(oauth_path(back_url: back_url), method: :get, id: 'oauth-login') do %>
@@ -73,6 +82,11 @@
     let login_form = $('div#login-form');
     login_form.appendTo('#oauth-fieldset-login-form');
     login_form.toggle();
+  <% end %>
+
+  <%# The hook renders below the login form, so the first header has to be moved up to it %>
+  <% if form_header.present? %>
+    $('div#oauth-login-form-header').insertBefore($('div#login-form'));
   <% end %>
 
   <% if RedmineOauth.oauth_only_login? && params.exclude?(:nosso)%>

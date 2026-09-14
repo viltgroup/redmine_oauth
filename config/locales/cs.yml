@@ -50,6 +50,13 @@ cs:
   oauth_sso_forced_exempt_logins_info: |
     Přihlašovací jména, kterým zůstane přihlášení heslem i přes vynucenou doménu. Ponechte zde alespoň jednoho
     administrátora, abyste se dostali dovnitř i v době nedostupnosti OAuth poskytovatele.
+  oauth_login_headers: Zapnout nadpisy na přihlašovací stránce
+  oauth_login_headers_info: |
+    Zobrazí nad každou polovinou přihlašovací stránky oddělovač s popiskem, aby byly obě cesty rozlišené.
+  oauth_login_header_form: Nadpis nad přihlašovacím formulářem
+  oauth_login_header_form_info: "Prázdné pole oddělovač nevykreslí. Příklad: Externí uživatelé"
+  oauth_login_header_oauth: Nadpis nad OAuth tlačítky
+  oauth_login_header_oauth_info: "Prázdné pole oddělovač nevykreslí. Příklad: Interní uživatelé"
   oauth_hide_login_form: Skrýt přihlašovací formulář
   oauth_update_login_info: Aktualizovat profil uživatele po úspěšném přihlášení.
   oauth_logout: Odhlášení OAuth

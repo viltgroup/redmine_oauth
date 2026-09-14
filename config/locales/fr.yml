@@ -51,6 +51,13 @@ fr:
   oauth_sso_forced_exempt_logins_info: |
     Identifiants qui conservent l'authentification par mot de passe malgré un domaine obligatoire. Conservez-y au
     moins un administrateur afin de pouvoir vous connecter lorsque le fournisseur OAuth est injoignable.
+  oauth_login_headers: Activer les intitulés de la page de connexion
+  oauth_login_headers_info: |
+    Affiche un séparateur intitulé au-dessus de chaque moitié de la page de connexion, pour distinguer les deux accès.
+  oauth_login_header_form: Intitulé au-dessus du formulaire de connexion
+  oauth_login_header_form_info: "Vide, aucun séparateur n'est tracé. Exemple : Utilisateurs externes"
+  oauth_login_header_oauth: Intitulé au-dessus des boutons OAuth
+  oauth_login_header_oauth_info: "Vide, aucun séparateur n'est tracé. Exemple : Utilisateurs internes"
   oauth_hide_login_form: Masquer le formulaire de connexion
   oauth_update_login_info: Mettre à jour le profil de l'utilisateur·trice après une connexion réussie.
   oauth_logout: Déconnexion OAuth

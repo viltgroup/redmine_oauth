@@ -48,6 +48,29 @@
   <em class="info"><%= l(:label_default)%>: <%= l(:general_text_No) %></em>
 </p>
 <p>
+  <label><%= l(:oauth_login_headers) %></label>
+  <%= check_box_tag 'settings[login_headers]', '1', RedmineOauth.login_headers?,
+                    onchange: 'oauth_login_headers_changed();' %>
+  <em class="info">
+    <%= l(:oauth_login_headers_info) %><br>
+    <%= l(:label_default) %>: <%= l(:general_text_No) %>
+  </em>
+</p>
+<div id="oauth_login_headers_setting" style="<%= RedmineOauth.login_headers? ? '' : 'display: none;' %>">
+  <p>
+    <label><%= l(:oauth_login_header_form) %></label>
+    <%= text_field_tag 'settings[login_header_form]',
+                       Setting.plugin_redmine_oauth['login_header_form'], size: 40 %>
+    <em class="info"><%= l(:oauth_login_header_form_info) %></em>
+  </p>
+  <p>
+    <label><%= l(:oauth_login_header_oauth) %></label>
+    <%= text_field_tag 'settings[login_header_oauth]',
+                       Setting.plugin_redmine_oauth['login_header_oauth'], size: 40 %>
+    <em class="info"><%= l(:oauth_login_header_oauth_info) %></em>
+  </p>
+</div>
+<p>
   <label><%= l(:button_update) %></label>
   <label class="inline">
     <%= l(:field_login) %>
