@@ -177,6 +177,24 @@ function oauth_settings_visibility() {
     }
 }
 
+// Stretch the marked buttons to the login form's width and double their height. Both are measured
+// rather than hard coded, so a theme with a different login box still lines up.
+function oauth_resize_large_buttons()
+{
+    let buttons = $("button.oauth_large_button");
+    if(!buttons.length) {
+        return;
+    }
+    let login_form = $("div#login-form");
+    let width = login_form.length ? login_form.outerWidth() : 0;
+    if(width > 0) {
+        $("div#oauth-form, div.oauth_login_header").css("width", width + "px");
+    }
+    buttons.each(function() {
+        $(this).css("height", ($(this).outerHeight() * 2) + "px");
+    });
+}
+
 function oauth_toggle_fieldset(el)
 {
     let fieldset = el.parentNode;

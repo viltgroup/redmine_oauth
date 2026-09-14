@@ -55,6 +55,10 @@ div#oauth-form {
   width: fit-content;
 }
 
+button.oauth_large_button {
+  width: 100%;
+}
+
 div#oauth-form-buttons {
   text-align: center;
 }

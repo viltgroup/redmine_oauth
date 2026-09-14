@@ -88,6 +88,10 @@
         <% end %>
         <em class="info"><%= l(:oauth_button_image_info) %></em>
       </p>
+      <p>
+        <%= f.check_box :large_button, title: l(:oauth_large_button_info) %>
+        <em class="info"><%= l(:oauth_large_button_info) %></em>
+      </p>
       <% if %w(Custom).include?(@oauth_provider.oauth_name) %>
         <p id="oauth_options_site" style="display: none">
       <% else %>

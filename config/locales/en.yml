@@ -115,5 +115,8 @@ en:
   oauth_button_image_info: |
     Upload an image to use on the login button in place of the icon above. PNG, JPEG, GIF, SVG or WebP, up to 256 kB.
   error_oauth_button_image_too_big: "is larger than %{max} kB"
+  field_large_button: Large button (match login form width)
+  oauth_large_button_info: |
+    Stretch the login button to the width of the login form and make it twice as tall.
   oauth_button_color_info: Button's colour
   oauth_button_icon_info: Button's icon

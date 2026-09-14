@@ -117,5 +117,8 @@ cs:
     Nahrajte obrázek, který se na přihlašovacím tlačítku použije místo ikony výše. PNG, JPEG, GIF, SVG nebo WebP,
     nejvýše 256 kB.
   error_oauth_button_image_too_big: "je větší než %{max} kB"
+  field_large_button: Velké tlačítko (na šířku přihlašovacího formuláře)
+  oauth_large_button_info: |
+    Roztáhne přihlašovací tlačítko na šířku přihlašovacího formuláře a zdvojnásobí jeho výšku.
   oauth_button_color_info: Barva tlačítka
   oauth_button_icon_info: Ikonka tlačítka

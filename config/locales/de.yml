@@ -119,5 +119,8 @@ de:
     Laden Sie ein Bild hoch, das auf der Login-Schaltfläche anstelle des obigen Symbols erscheint. PNG, JPEG, GIF,
     SVG oder WebP, bis zu 256 kB.
   error_oauth_button_image_too_big: "ist größer als %{max} kB"
+  field_large_button: Große Schaltfläche (Breite des Login-Formulars)
+  oauth_large_button_info: |
+    Streckt die Login-Schaltfläche auf die Breite des Login-Formulars und verdoppelt ihre Höhe.
   oauth_button_color_info: Buttons Farbe
   oauth_button_icon_info: Button-Symbol

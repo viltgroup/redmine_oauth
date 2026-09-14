@@ -118,5 +118,8 @@ fr:
     Téléversez une image à utiliser sur le bouton de connexion à la place de l'icône ci-dessus. PNG, JPEG, GIF, SVG
     ou WebP, jusqu'à 256 ko.
   error_oauth_button_image_too_big: "dépasse %{max} ko"
+  field_large_button: Grand bouton (à la largeur du formulaire de connexion)
+  oauth_large_button_info: |
+    Étire le bouton de connexion à la largeur du formulaire de connexion et double sa hauteur.
   oauth_button_color_info: Couleur du bouton
   oauth_button_icon_info: Icône du bouton

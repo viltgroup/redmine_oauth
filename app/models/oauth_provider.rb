@@ -67,6 +67,7 @@ class OauthProvider < ApplicationRecord
     self.button_icon = params['button_icon']
     self.button_image = nil if params['button_image_delete'] == '1'
     self.button_image_upload = params['button_image_upload']
+    self.large_button = params['large_button']
     self.custom_firstname_field = params['custom_firstname_field']
     self.custom_lastname_field = params['custom_lastname_field']
     self.custom_logout_endpoint = params['custom_logout_endpoint']

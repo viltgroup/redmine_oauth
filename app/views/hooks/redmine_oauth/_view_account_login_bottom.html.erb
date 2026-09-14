@@ -42,6 +42,7 @@
     <% OauthProvider.sorted.all.each_with_index do |oauth_provider, i| %>
         <%= button_tag(name: 'oauth_provider', value: oauth_provider.id, tabindex: i + 7,
                        id: "login-oauth-submit-#{oauth_provider.id}",
+                       class: ('oauth_large_button' if oauth_provider.large_button),
                        title: l(:oauth_login_with), style: "background: #{oauth_provider.button_color}") do %>
           <% if oauth_provider.button_image.present? %>
             <img class="oauth_button_image" src="<%= oauth_provider.button_image %>" alt="">
@@ -81,6 +82,10 @@
         }
     }
   });
+
+  <%# Large buttons are sized against the login form, so measure it before it can be hidden %>
+  oauth_resize_large_buttons();
+
   <%# Hidden login form %>
   <% if RedmineOauth.hide_login_form? %>
     let login_form = $('div#login-form');
