@@ -42,7 +42,8 @@ Redmine::Plugin.register :redmine_oauth do
     update_login: '0',
     oauth_logout: '0',
     oauth_login: '0',
-    oauth_only_login: '0'
+    oauth_only_login: '0',
+    token_check: '0'
   }, partial: 'settings/oauth_settings'
 end
 

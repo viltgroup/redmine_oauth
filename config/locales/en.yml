@@ -83,6 +83,12 @@ en:
     When enabled, users will be redirected straight to the OAuth provider, entirely skipping the standard login page. 
     Though, you can force the standard login page by adding 'nosso' parameter into the login URL, e.g. '/login?nosso'.
   identify_user_by_info: Provider's field to identify the user in Redmine
+  oauth_token_check: Token check
+  oauth_token_check_info: |
+    When enabled, a session started through an OAuth provider lasts only as long as the provider's own session. Each
+    time the access token expires, Redmine refreshes it, and logs the user out if the provider refuses. Applies to
+    providers that issue refresh tokens, such as Keycloak. SSO forced accounts must then come through the provider,
+    so a Redmine autologin cookie no longer keeps them in. Sessions started before this was enabled end once.
 
   label_oauth_provider: OAuth provider
   label_oauth_providers: OAuth providers

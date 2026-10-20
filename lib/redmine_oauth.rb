@@ -124,6 +124,11 @@ module RedmineOauth
       value.to_i.positive? || value == 'true'
     end
 
+    def token_check?
+      value = Setting.plugin_redmine_oauth['token_check']
+      value.to_i.positive? || value == 'true'
+    end
+
     private
 
     def domains_list(setting)
@@ -149,6 +154,7 @@ require File.expand_path('redmine_oauth/hooks/views/base_view_hooks', __dir__)
 require File.expand_path('redmine_oauth/hooks/views/login_view_hooks', __dir__)
 
 # Patches
+require File.expand_path('redmine_oauth/patches/application_controller_patch', __dir__)
 require File.expand_path('redmine_oauth/patches/settings_controller_patch', __dir__)
 require File.expand_path('redmine_oauth/patches/account_controller_patch', __dir__)
 require File.expand_path('redmine_oauth/patches/user_patch', __dir__)

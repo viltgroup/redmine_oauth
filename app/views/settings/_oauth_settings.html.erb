@@ -132,3 +132,11 @@
     <%= l(:label_default) %>: <%= l(:general_text_No) %>
   </em>
 </p>
+<p>
+  <label><%= l(:oauth_token_check) %></label>
+  <%= check_box_tag 'settings[token_check]', '1', RedmineOauth.token_check? %>
+  <em class="info">
+    <%= l(:oauth_token_check_info) %><br>
+    <%= l(:label_default) %>: <%= l(:general_text_No) %>
+  </em>
+</p>

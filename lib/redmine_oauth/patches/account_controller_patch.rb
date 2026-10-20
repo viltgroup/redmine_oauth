@@ -47,6 +47,7 @@ module RedmineOauth
 
       def logout
         cookies.delete :oauth_autologin
+        OauthSession.where(id: session[:oauth_session_id]).delete_all if request.post? && session[:oauth_session_id]
         return super if User.current.anonymous? || !request.post? || !RedmineOauth.oauth_logout? ||
                         session[:oauth_login].blank?
 

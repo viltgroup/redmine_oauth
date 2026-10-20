@@ -272,6 +272,7 @@ class RedmineOauthController < AccountController
     set_params
     try_to_login email, user_info, non_default_roles, oauth_provider
     session[:oauth_login] = oauth_provider.id
+    start_oauth_session oauth_provider, token
   rescue StandardError => e
     Rails.logger.error e.message
     flash['error'] = e.message
@@ -289,6 +290,14 @@ class RedmineOauthController < AccountController
       httponly: true
     }
     cookies[:oauth_autologin] = cookie_options
+  end
+
+  # Keeps the provider's tokens for the token check. Created even when the provider sends no refresh token, so that a
+  # session without one can be told apart from a session that started before the check was switched on.
+  def start_oauth_session(oauth_provider, token)
+    return unless RedmineOauth.token_check? && User.current.logged?
+
+    session[:oauth_session_id] = OauthSession.start(User.current.id, oauth_provider, token).id
   end
 
   def generate_code_verifier
